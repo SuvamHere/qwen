@@ -1,0 +1,65 @@
+{
+  "name": "shrome-browser",
+  "version": "1.0.0",
+  "description": "A modern web browser with Linux-inspired design",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "concurrently \"npm run dev:renderer\" \"wait-on http://localhost:3000 && electron .\"",
+    "dev:renderer": "vite",
+    "build": "tsc && vite build",
+    "build:electron": "electron-builder",
+    "dist": "npm run build && electron-builder",
+    "test": "jest"
+  },
+  "keywords": ["browser", "electron", "react", "typescript"],
+  "author": "Shrome Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^19.2.4",
+    "@types/react-dom": "^19.2.3",
+    "@types/uuid": "^10.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "autoprefixer": "^10.4.22",
+    "concurrently": "^9.2.0",
+    "electron": "^42.4.1",
+    "electron-builder": "^26.0.12",
+    "jest": "^30.0.4",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.2",
+    "wait-on": "^9.0.3"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "lowdb": "^7.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-redux": "^9.2.0",
+    "redux-toolkit": "^1.9.7",
+    "uuid": "^13.0.0"
+  },
+  "build": {
+    "appId": "com.shrome.browser",
+    "productName": "Shrome Browser",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "dist/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.internet"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Network"
+    }
+  }
+}
